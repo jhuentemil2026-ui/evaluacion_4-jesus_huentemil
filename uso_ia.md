@@ -37,12 +37,12 @@ Trabajo propio:
 Verificación:
 - `npm run build` y `npm run lint`, sin errores.
 - Pruebas manuales en el navegador: rutas y página 404, menú móvil, modo claro/oscuro con memoria al recargar, filtro de proyectos, formulario con validación y confirmación, y carga de repositorios desde la API de GitHub.
-- Comparación visual con la captura de la E2 (docs/captura-E2.jpeg).
-- Revisión de accesibilidad con Lighthouse: [COMPLETA con tus notas reales].
+- Comparación visual con la captura de la E2 
+- Revisión de accesibilidad con Lighthouse
 
 ## 6. Reflexión final
 El uso de IA aceleró el desarrollo y permitió completar un proyecto más amplio dentro del plazo. Su riesgo principal es obtener código que funciona sin comprenderlo, por eso verifiqué cada paso en el navegador, corregí los errores que aparecieron y documenté qué parte proviene de la IA y qué parte es propia.
 
-- Lo que entiendo bien: [COMPLETA con tus palabras, por ejemplo cómo viajan los datos por props, por qué el tema está en un contexto, cómo funciona fetch dentro de useEffect].
-- Lo que debo repasar: [COMPLETA con tus palabras].
-- Lo que haría distinto: [COMPLETA con tus palabras].
+- Lo que entiendo bien: El funcionamiento de levantar el programa, las ramas, los comandos y en general el como funciona y como llega esa información a la página.
+- Lo que debo repasar: El ambito teórico y el poder resolver en momentos cuando tengo poco plazo para entregar el proyecto.
+- Lo que haría distinto: Intentar buscar soluciones por mi cuenta.
