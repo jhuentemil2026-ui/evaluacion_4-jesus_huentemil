@@ -74,11 +74,16 @@ src/
 - **Estilos:** un archivo CSS por componente, con nomenclatura BEM.
 - **Estado:** `useState` para estado local (menú, filtro, formulario) y Context API para el tema, que es transversal.
 
+
 ## Accesibilidad
 
 HTML semántico (`header`, `nav`, `main`, `section`, `article`), `label` asociado a cada campo con `htmlFor`, atributos ARIA (`aria-expanded`, `aria-pressed`, `aria-live`, `aria-invalid`), foco visible con `:focus-visible` y menú adaptable a móvil.
 
-**Auditoría:** _(completar con el resultado de Lighthouse y la prueba de navegación por teclado)_
+**Auditoría:**
+- **Lighthouse (Mobile - `/habilidades`):** 100 en *Accessibility* y 100 en *Best Practices*.
+- **Navegación por teclado:** Verificada con `Tab` y `Shift + Tab` en todas las rutas, enlaces de navegación, botones de filtro, cambio de tema y campos del formulario con foco visible (`:focus-visible`).
+
+![Resultado Lighthouse](docs/lighthouse.png)
 
 ## Flujo de trabajo en Git
 
