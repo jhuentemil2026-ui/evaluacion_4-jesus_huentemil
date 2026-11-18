@@ -43,3 +43,11 @@ export interface StatusMessageProps {
   kind: 'loading' | 'error';
   message: string;
 }
+
+export interface ContactFormValues {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export type ContactFormErrors = Partial<ContactFormValues>;
