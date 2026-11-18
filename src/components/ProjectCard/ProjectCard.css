@@ -1,0 +1,25 @@
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.project-card__title {
+  font-size: 1.2rem;
+}
+
+.project-card__description {
+  margin: 0 0 0.75rem;
+}
+
+.project-card__tags {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.project-card__link {
+  color: var(--accent);
+  font-weight: 600;
+}

@@ -29,3 +29,17 @@ export interface ThemeContextValue {
   theme: ThemeMode;
   toggleTheme: () => void;
 }
+
+export interface ProjectCardProps {
+  title: string;
+  description: string;
+  tags: string[];
+  href?: string;
+}
+
+export type ProjectFilter = ProjectCategory | 'Todos';
+
+export interface StatusMessageProps {
+  kind: 'loading' | 'error';
+  message: string;
+}
