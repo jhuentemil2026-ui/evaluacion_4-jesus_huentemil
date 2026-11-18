@@ -1,0 +1,9 @@
+.contact {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+}
+
+.contact__title {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
