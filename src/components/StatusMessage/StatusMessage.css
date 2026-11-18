@@ -1,0 +1,13 @@
+.status-message {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.status-message--error {
+  border-color: var(--err);
+  color: var(--err);
+  font-weight: 600;
+}
