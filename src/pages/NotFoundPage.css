@@ -1,0 +1,19 @@
+.not-found {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 6rem 1.25rem;
+}
+
+.not-found__title {
+  font-size: clamp(3rem, 10vw, 6rem);
+}
+
+.not-found__text {
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.not-found__link {
+  color: var(--accent);
+  font-weight: 600;
+}
