@@ -22,3 +22,10 @@ export interface NavItem {
   label: string;
   path: string;
 }
+
+export type ThemeMode = 'light' | 'dark';
+
+export interface ThemeContextValue {
+  theme: ThemeMode;
+  toggleTheme: () => void;
+}
