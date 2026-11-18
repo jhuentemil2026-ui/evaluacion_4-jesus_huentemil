@@ -1,75 +1,88 @@
-# React + TypeScript + Vite
+# Portafolio en React – Jesús Huentemil
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio personal migrado desde la Evaluación 2 (HTML, CSS y JavaScript) a una SPA con React, TypeScript y Vite. Proyecto de la Evaluación 4 de Desarrollo de Frontend (ICINF1107), Universidad Católica de Temuco.
 
-Currently, two official plugins are available:
+## Referencia visual (Evaluación 2)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Captura del portafolio original, para comparar el diseño:
 
-## React Compiler
+![Portafolio de la Evaluación 2](docs/captura-e2.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El diseño conserva la estructura, la paleta, la tipografía y la jerarquía visual de la E2: barra de navegación, inicio, sobre mí, proyectos con filtros, habilidades, contacto y modo oscuro.
 
-## Expanding the ESLint configuration
+## Cómo ejecutarlo
+```bash
+# 1. Instalar dependencias
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# 2. Servidor de desarrollo
+npm run dev
+# 3. Verificar tipos y generar la versión de producción (carpeta dist/)
+npm run build
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
+# 4. Previsualizar la compilación de producción
+npm run preview
+```
+## Rutas
+
+| Ruta | Página |
+|---|---|
+| `/` | Inicio |
+| `/sobre-mi` | Sobre mí |
+| `/proyectos` | Proyectos (filtros y repositorios de GitHub) |
+| `/habilidades` | Habilidades |
+| `/contacto` | Contacto (formulario validado) |
+| `*` | Página 404 |
+
+## API utilizada: GitHub REST API
+
+- **Endpoint:** `https://api.github.com/users/jhuentemil2026-ui/repos?sort=updated&per_page=6`
+- **Método:** GET, sin API key.
+- **Parámetros:** `sort=updated` ordena por última actualización y `per_page=6` limita la cantidad de resultados.
+- **Respuesta esperada (arreglo de objetos):**
+```json
+[
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+    "id": 123,
+    "name": "nombre-del-repo",
+    "description": "texto o null",
+    "html_url": "https://github.com/...",
+    "language": "TypeScript o null",
+    "stargazers_count": 0,
+    "updated_at": "2026-11-18T12:00:00Z"
+  }
+]
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+La respuesta está tipada con la interfaz `GitHubRepo` en `src/types/index.ts`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Por qué elegí este endpoint:** muestra mis repositorios reales dentro del portafolio, así que la información se mantiene actualizada sin editar el código y se relaciona directamente con el propósito del sitio.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Estados de la petición:** el hook `useFetchApi` maneja `loading`, `data` y `error`, y cancela la petición con `AbortController` al desmontar el componente para evitar condiciones de carrera.
 
+## Arquitectura
 ```
+src/
+├── components/   Navbar, ProjectCard, StatusMessage, ContactForm
+├── context/      themeContext y ThemeProvider (modo claro/oscuro)
+├── data/         portfolioData.ts (datos estáticos tipados)
+├── hooks/        useFetchApi, useTheme
+├── pages/        Home, About, Projects, Skills, Contact, NotFound
+├── services/     apiService.ts (URL de la API)
+└── types/        interfaces y tipos TypeScript
+```
+- **Estilos:** un archivo CSS por componente, con nomenclatura BEM.
+- **Estado:** `useState` para estado local (menú, filtro, formulario) y Context API para el tema, que es transversal.
+
+## Accesibilidad
+
+HTML semántico (`header`, `nav`, `main`, `section`, `article`), `label` asociado a cada campo con `htmlFor`, atributos ARIA (`aria-expanded`, `aria-pressed`, `aria-live`, `aria-invalid`), foco visible con `:focus-visible` y menú adaptable a móvil.
+
+**Auditoría:** _(completar con el resultado de Lighthouse y la prueba de navegación por teclado)_
+
+## Flujo de trabajo en Git
+
+Ramas por funcionalidad (`feat/estructura-base`, `feat/tema-context`, `feat/rutas`, `feat/consumo-api`, `feat/contacto`, `docs/documentacion`), commits con Conventional Commits y Pull Requests fusionados hacia `main`.
+## Documentación adicional
+- [`INVENTARIO.md`](INVENTARIO.md): trazabilidad de la migración desde la E2.
+- [`uso_ia.md`](uso_ia.md): bitácora de uso de IA.
